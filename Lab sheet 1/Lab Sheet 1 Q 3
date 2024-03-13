@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace labsheet3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter a positive integer:");
+            string userInput = Console.ReadLine();
+
+            if (int.TryParse(userInput, out int number) && number > 0)
+            {
+                int sum = CalculateSum(number);
+                Console.WriteLine($"Sum of all numbers from 1 to {number}: {sum}");
+            }
+            else
+            {
+                Console.WriteLine("ERROR: Invalid input. Please enter a positive integer.");
+            }
+
+            Console.ReadLine();
+        }
+
+        static int CalculateSum(int n)
+        {
+            int sum = 0;
+            for (int i = 1; i <= n; i++)
+            {
+                sum += i;
+            }
+            return sum;
+        }
+
+    }
+}
+
