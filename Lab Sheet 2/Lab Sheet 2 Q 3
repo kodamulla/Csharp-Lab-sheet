@@ -1,0 +1,60 @@
+using Microsoft.SqlServer.Server;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace labsheet_2_Q_3
+{
+    internal class Program
+    {
+
+
+        class TemperatureTracker
+        {
+            private double[] temperatures;
+
+            public TemperatureTracker()
+            {
+                temperatures = new double[7]; 
+            }
+
+            public void InputTemperatures()
+            {
+                Console.WriteLine("Enter temperatures for each day of the week:");
+                for (int day = 0; day < temperatures.Length; day++)
+                {
+                    Console.Write($"Temperature for day {day + 1}: ");
+                    temperatures[day] = double.Parse(Console.ReadLine());
+                }
+            }
+
+            public void DisplayWeeklyReport()
+            {
+                Console.WriteLine("\nWeekly Temperature Report:");
+                for (int day = 0; day < temperatures.Length; day++)
+                {
+                    Console.WriteLine($"Day {day + 1}: {temperatures[day]}°C");
+                }
+            }
+        }
+
+        
+        
+        
+            static void Main(string[] args)
+            {
+                
+                TemperatureTracker tracker = new TemperatureTracker();
+
+                
+                tracker.InputTemperatures();
+
+                
+                tracker.DisplayWeeklyReport();
+            }
+        
+    }
+}
