@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace labsheet_2_Q_2
+{
+    
+    
+        namespace BankAccountConsoleApp
+    {
+        class BankAccount
+        {
+            public string AccountNumber { get; set; }
+            public double Balance { get; private set; }
+
+            
+            public BankAccount(string accountNumber, double initialBalance)
+            {
+                AccountNumber = accountNumber;
+                Balance = initialBalance;
+            }
+
+            
+            public void Deposit(double amount)
+            {
+                Balance += amount;
+            }
+        }
+
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                
+                BankAccount myAccount = new BankAccount("123456789", 1000.00);
+
+                
+                double depositAmount = 500.00;
+                myAccount.Deposit(depositAmount);
+
+                
+                Console.WriteLine("Account Number: " + myAccount.AccountNumber);
+                Console.WriteLine("Updated Balance after deposit: $" + myAccount.Balance);
+
+                Console.ReadLine(); 
+            }
+        }
+    }
+}
+
