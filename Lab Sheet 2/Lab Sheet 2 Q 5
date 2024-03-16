@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace labsheet_2_Q_5
+{
+    class LibraryBook
+    {
+        
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public bool Available { get; set; }
+
+       
+        public LibraryBook(string title, string author, bool available)
+        {
+            Title = title;
+            Author = author;
+            Available = available;
+        }
+
+        
+        public void BorrowBook()
+        {
+            if (Available)
+            {
+                Available = false;
+                Console.WriteLine($"Book '{Title}' by {Author} has been borrowed.");
+            }
+            else
+            {
+                Console.WriteLine($"Book '{Title}' by {Author} is not available for borrowing.");
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            List<LibraryBook> books = new List<LibraryBook>
+        {
+            new LibraryBook("Madol Doowa", "Martin Wickramasinghe ", true),
+            new LibraryBook("Dwari Swara", "Thisarani D Nirmani", false),
+            new LibraryBook("Maathraa", "Malee Perera", true),
+            new LibraryBook("Ape Gama", "Martin Wickramasinghe", false)
+        };
+
+            
+            Console.WriteLine("Initial Library Status:");
+            DisplayLibraryStatus(books);
+
+            
+            books[0].BorrowBook(); 
+            books[1].BorrowBook(); 
+            books[2].BorrowBook(); 
+            books[3].BorrowBook(); 
+
+            
+            Console.WriteLine("\nUpdated Library Status:");
+            DisplayLibraryStatus(books);
+        }
+
+        
+        static void DisplayLibraryStatus(List<LibraryBook> books)
+        {
+            foreach (var book in books)
+            {
+                Console.WriteLine($"Title: {book.Title}, Author: {book.Author}, Available: {(book.Available ? "Yes" : "No")}");
+            }
+        }
+    }
+}
