@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace labsheet_3_Q_1
+{
+    internal class Program
+    {
+        
+        
+            public class Course
+        {
+            
+            private string courseName;
+            private string instructorName;
+            private double grade;
+
+            
+            public string CourseName => courseName;
+
+            public double Grade
+            {
+                get => grade;
+                set
+                {
+                    if (value < 0 || value > 100)
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(value), "Grade must be between 0 and 100.");
+                    }
+                    grade = value;
+                }
+            }
+
+            
+            public Course(string courseName, string instructorName, double grade)
+            {
+                this.courseName = courseName;
+                SetInstructorName(instructorName);
+                Grade = grade;
+            }
+
+            
+            public void SetInstructorName(string name)
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    throw new ArgumentException("Instructor name cannot be empty or whitespace.", nameof(name));
+                }
+                instructorName = name;
+            }
+
+            
+            private string CalculateLetterGrade()
+            {
+                if (grade >= 90)
+                    return "A";
+                else if (grade >= 80)
+                    return "B";
+                else if (grade >= 70)
+                    return "C";
+                else if (grade >= 60)
+                    return "D";
+                else
+                    return "F";
+            }
+
+            
+            public void PrintCourseInfo()
+            {
+                Console.WriteLine($"Course Name: {courseName}");
+                Console.WriteLine($"Instructor Name: {instructorName}");
+                Console.WriteLine($"Letter Grade: {CalculateLetterGrade()}");
+            }
+        }
+
+       
+        
+            static void Main(string[] args)
+            {
+               
+                Course course = new Course("Math", "Mr. Smith", 85);
+                course.PrintCourseInfo();
+
+                
+                try
+                {
+                    course.Grade = 110;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+    }
+    
+
